@@ -1,10 +1,8 @@
 package com.security.test.security;
 
 import com.security.test.member.MemberMapper;
-import com.security.test.member.MemberService;
 import com.security.test.member.Role;
 import com.security.test.member.UserEntity;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,12 +33,12 @@ public class UserDetailServiceImpl implements UserDetailsService {
         } else {
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
-        return new User(user.getId(), user.getPw(), authorities);
+        return new User(user.getUnm(), user.getPw(), authorities);
     }
 
-    public int join(UserEntity param) {
+    public void join(UserEntity param) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         param.setPw(passwordEncoder.encode(param.getPw()));
-        return mapper.join(param);
+        mapper.join(param);
     }
 }

@@ -9,6 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class UserEntity {
-    private String id;
+    private String unm;
     private String pw;
+    private int uno;
+    private String regdt;
 }
