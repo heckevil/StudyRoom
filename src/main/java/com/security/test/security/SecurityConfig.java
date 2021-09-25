@@ -18,7 +18,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-   @Autowired private UserDetailsService userDetailsService;
+   @Autowired private UserDetailServiceImpl userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/user/login")
                 .defaultSuccessUrl("/user/success")
+                .failureUrl("/user/denied")
                 .permitAll()
                 .and() // 로그아웃 설정
                 .logout()

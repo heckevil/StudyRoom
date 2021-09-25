@@ -5,7 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/user/login" method="post">
+<form th:action="@{/user/login}" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <label>
         <input type="text" name="username" placeholder="아이디">
     </label>
