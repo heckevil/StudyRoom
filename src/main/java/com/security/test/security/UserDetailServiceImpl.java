@@ -25,9 +25,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserEntity user = mapper.selUser(username);
         List<GrantedAuthority> authorities = new ArrayList<>();
-        if (user == null) {
-            return (UserDetails) new UsernameNotFoundException("등록되지 않은 사용자 입니다");
-        }
         if (("admin@exemple.com").equals(username)) {
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
         } else {
